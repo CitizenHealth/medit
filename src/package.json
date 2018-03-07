@@ -1,0 +1,17 @@
+{
+  "name": "medit",
+  "version": "0.1.0",
+  "description": "Citizen Health Medit Token infrastructure",
+  "main": "truffle.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "James Cunningham",
+  "license": "MIT",
+  "dependencies": {
+    "zeppelin-solidity": "1.7.0"
+  }
+}
