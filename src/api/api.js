@@ -57,7 +57,8 @@ module.exports = {
       return token.decimals();
     }).then(function (_decimals) {
       decimals = _decimals;
-      return token.totalSupply.call({from: account});
+      return token.totalSupply.
+        call({from: account});
     }).then(function (_total) {
       return _total / Math.pow(10, decimals);
     }).catch(function(e) {
@@ -67,7 +68,20 @@ module.exports = {
   },
 
   owned : function() {
-    return ownedBy(account);
+    var token;
+    var decimals;
+    return MeditToken.deployed().then(function(instance) {
+      token = instance;
+      return token.decimals();
+    }).then(function(_decimals) {
+      decimals = _decimals;
+      return token.balanceOf.call(account, {from: account});
+    }).then(function(_owned) {
+      return _owned / Math.pow(10, decimals);
+    }).catch(function(e) {
+      console.log(e);
+      return -1;
+    });   
   },
 
   ownedBy : function(address) {
@@ -75,7 +89,7 @@ module.exports = {
     var decimals;
     return MeditToken.deployed().then(function(instance) {
       token = instance;
-      return token.decimals;
+      return token.decimals();
     }).then(function(_decimals) {
       decimals = _decimals;
       return token.balanceOf.call(address, {from: account});
@@ -91,9 +105,9 @@ module.exports = {
     var token;
     return MeditToken.deployed().then(function(instance) {
       token = instance;
-      return token.decimals;
+      return token.decimals();
     }).then(function(_decimals) {
-      var rawAmount = amount * Math.pow(10, decimals);
+      var rawAmount = amount * Math.pow(10, _decimals);
       return token.mint(account, rawAmount, {from: account});
     }).catch(function(e) {
       console.log(e);
@@ -105,9 +119,10 @@ module.exports = {
     var token;
     return MeditToken.deployed().then(function(instance) {
       token = instance;
-      return token.decimals;
+      return token.decimals();
     }).then(function(_decimals) {
-      return token.transfer(address, amount, {from: account});
+      var rawAmount = amount * Math.pow(10, _decimals);
+      return token.transfer(address, rawAmount, {from: account});
     }).catch(function(e) {
       console.log(e);
       return -1;
