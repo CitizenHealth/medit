@@ -93,12 +93,11 @@ function command_hack {
     fi
 }
 
-# function command_down {
-#     printf "${GREEN}Killing docker instances${NC}\n"
-#     cleanup-hack
-    ;
-    printf "${GREEN}Dev down${NC}\n"
-    printf "${GREEN}It's too bad she won't live, but then again who does?${NC}"
+function command_down {
+     printf "${GREEN}Killing docker instances${NC}\n"
+     cleanup-hack;
+     printf "${GREEN}Dev down${NC}\n"
+     printf "${GREEN}It's too bad she won't live, but then again who does?${NC}"
 }
 
 # -----------------------------------------------------------------
