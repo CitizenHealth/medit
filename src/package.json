@@ -12,6 +12,15 @@
   "author": "James Cunningham",
   "license": "MIT",
   "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "bcrypt": "^1.0.3",
+    "dotenv": "^5.0.1",
+    "express": "^4.16.2",
+    "jsonwebtoken": "^8.2.0",
+    "truffle-contract": "^3.0.4",
     "zeppelin-solidity": "1.7.0"
   }
 }
