@@ -17,3 +17,20 @@ services:
     depends_on:
       - "devnet"
     entrypoint: /bin/sh
+  api:
+    build:
+      context: ..
+      dockerfile: vm/Dockerfile.api
+    ports:
+      - "3000:3000"
+    volumes:
+      - ../src/:/src/
+      - /src/node_modules
+    tty: true
+    depends_on:     
+      - "devnet"
+    environment:
+      - HOST=0.0.0.0
+      - RPCHOST=testrpc
+      - RPCPORT=8545
+
