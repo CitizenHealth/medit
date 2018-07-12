@@ -5,7 +5,7 @@ WORKDIR /src/
 
 RUN apk add -t .gyp --no-cache git python g++ make \
     && npm install -g truffle \
-    && npm install -E zeppelin-solidity \
+    && npm install -E openzeppelin-solidity \
     && apk del .gyp
 
 ENTRYPOINT ["truffle"]

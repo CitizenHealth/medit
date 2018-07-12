@@ -3,8 +3,18 @@ import { default as Web3 } from 'web3';
 import { default as contract } from 'truffle-contract';
 
 import MeditTokenSol from '../build/contracts/MeditToken.json';
+var HDWalletProvider = require("truffle-hdwallet-provider");
+var config = require('./config.json');
 
-var web3 = new Web3(new Web3.providers.HttpProvider("http://devnet:8545"));
+var provider = process.env.PROVIDER;
+console.log("Provider is: " + provider);
+var web3;
+if (typeof provider == "undefined" || provider == "DOCKER") {
+  web3 = new Web3(new Web3.providers.HttpProvider("http://devnet:8545"));
+} else if (provider == "INFURA") {
+  web3 = new HDWalletProvider
+}
+
 var MeditToken = contract(MeditTokenSol);
 MeditToken.setProvider(web3.currentProvider);
 fixTruffleContractCompatibilityIssue(MeditToken);
@@ -99,33 +109,6 @@ module.exports = {
       console.log(e);
       return -1;
     });   
-  },
-
-  mint : function(amount) {
-    var token;
-    return MeditToken.deployed().then(function(instance) {
-      token = instance;
-      return token.decimals();
-    }).then(function(_decimals) {
-      var rawAmount = amount * Math.pow(10, _decimals);
-      return token.mint(account, rawAmount, {from: account});
-    }).catch(function(e) {
-      console.log(e);
-      return -1;
-    });
-  },
-
-  transferTo : function(address, amount) {
-    var token;
-    return MeditToken.deployed().then(function(instance) {
-      token = instance;
-      return token.decimals();
-    }).then(function(_decimals) {
-      var rawAmount = amount * Math.pow(10, _decimals);
-      return token.transfer(address, rawAmount, {from: account});
-    }).catch(function(e) {
-      console.log(e);
-      return -1;
-    });
   }
 }
+

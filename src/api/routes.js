@@ -26,15 +26,4 @@ app.get('/api/ownedby/:address', (req, res) =>
           res.send({"owned" : result});
         }));
 
-app.get('/api/mint/:amount', (req, res) =>
-        api.mint(req.params["amount"]).then(function(result) {
-          res.send(result);
-        }));
-
-app.get('/api/transfer/:address/:amount', (req, res) =>
-        api.transferTo(req.params["address"], req.params["amount"])
-        .then(function(result) {
-          res.send(result);
-        }));
-
 app.listen(3000, () => console.log('API active on port 3000!'))

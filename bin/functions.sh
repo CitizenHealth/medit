@@ -7,3 +7,8 @@ function cleanup-hack {
     docker-compose -p medit-hack -f vm/docker-compose.hack.yml kill
     docker-compose -p medit-hack -f vm/docker-compose.hack.yml rm -f
 }
+
+function build {
+    docker-compose -p medit-hack -f vm/docker-compose.hack.yml build --no-cache 
+}
+
