@@ -9,7 +9,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build-api": "babel /src/api -s -D -d /src/dist --presets es2015,stage-0",
-    "start-api": "node /src/dist/routes.js"
+    "start-api": "node /src/dist/routes.js",
+    "api": "babel /src/api -s -D -d /src/dist --presets es2015,stage-0 && node /src/dist/routes.js"
   },
   "author": "James Cunningham",
   "license": "MIT",

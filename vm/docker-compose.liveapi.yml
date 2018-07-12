@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  api:
+    build:
+      context: ..
+      dockerfile: vm/Dockerfile.api
+    ports:
+      - "3001:3000"
+    volumes:
+      - ../src/:/src/
+      - /src/node_modules
+    tty: true
+    command: npm run api
+    environment:
+      - HOST=0.0.0.0
+      - PROVIDER=INFURA

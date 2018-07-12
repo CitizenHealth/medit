@@ -33,4 +33,5 @@ services:
       - HOST=0.0.0.0
       - RPCHOST=testrpc
       - RPCPORT=8545
+      - PROVIDER=DOCKER
 

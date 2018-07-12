@@ -12,8 +12,9 @@ var web3;
 if (typeof provider == "undefined" || provider == "DOCKER") {
   web3 = new Web3(new Web3.providers.HttpProvider("http://devnet:8545"));
 } else if (provider == "INFURA") {
-  web3 = new HDWalletProvider
+  web3 = new Web3(new HDWalletProvider(config.mnemonic, "https://mainnet.infura.io/" + config.infurakey, config.account));
 }
+console.log(web3);
 
 var MeditToken = contract(MeditTokenSol);
 MeditToken.setProvider(web3.currentProvider);
